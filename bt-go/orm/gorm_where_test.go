@@ -24,6 +24,7 @@ import (
 //Exprs []Expression
 // }
 
+// and  里面可以嵌套 [] Expression , 彼此之间是 “AND" 相连 其行为和 Where 里的[]Expression 一致，      与之相对 的是Or ,用 "OR" 连接
 // type AndConditions struct {
 //	Exprs []Expression
 // }

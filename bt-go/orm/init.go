@@ -6,6 +6,15 @@ import (
 	"gorm.io/gorm/logger"
 )
 
+type School struct {
+	gorm.Model
+	Students []string `gorm:"serializer:json"`
+}
+
+func (School) TableName() string {
+	return "test_school"
+}
+
 var (
 	globalDB *gorm.DB
 )
@@ -29,9 +38,9 @@ func getDB() *gorm.DB {
 	sqlDB.SetMaxIdleConns(1)
 	sqlDB.SetMaxOpenConns(2)
 
-	// err = globalDB.AutoMigrate(&model.User{})
-	// if err != nil {
-	// 	panic(err)
-	// }
+	err = globalDB.AutoMigrate(&School{})
+	if err != nil {
+		panic(err)
+	}
 	return globalDB
 }
